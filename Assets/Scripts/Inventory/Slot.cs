@@ -3,18 +3,18 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
-    public Image SlotFrame => _slotFrame;
-    public Image ItemIcon => _itemIcon;
-    public Item Item { get; private set; }
     public int SlotIndex { get; private set; }
+    public Weapon Weapon { get; private set; }
+    public Image WeaponIcon => _weaponIcon;
+    public Image SlotFrame => _slotFrame;
 
     [SerializeField] private Image _slotFrame;
-    [SerializeField] private Image _itemIcon;
+    [SerializeField] private Image _weaponIcon;
 
     public void SetIndex(int slotIndex) => SlotIndex = slotIndex;
 
-    public void PlaceItem(Item item)
+    public void PlaceWeapon(Weapon weapon)
     {
-        Item = item;
+        Weapon = weapon;
     }
 }

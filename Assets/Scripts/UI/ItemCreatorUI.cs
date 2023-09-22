@@ -5,26 +5,27 @@ public class ItemCreatorUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text _selectedItemDataName;
 
-    private ItemManager _itemManager;
+    private WeaponManager _itemManager;
 
     void Start()
     {
         GameManager.Instance.TryGetManager(out _itemManager);
-        _itemManager.OnItemDataSelected += ItemCreatorUIOnItemDataSelected;
+
+        _itemManager.OnWeaponDataSelected += ItemCreatorUIOnItemDataSelected;
     }
 
     void OnDestroy()
     {
-        _itemManager.OnItemDataSelected -= ItemCreatorUIOnItemDataSelected;
+        _itemManager.OnWeaponDataSelected -= ItemCreatorUIOnItemDataSelected;
     }
 
-    public void CreateItemButton() => _itemManager.CreateItem();
-    public void CreateRandomItemButton() => _itemManager.CreateRandomItem();
-    public void SelectNextItemDataButton() => _itemManager.SelectNextItemData();
-    public void SelectPreviousItemDataButton() => _itemManager.SelectPreviousItemData();
+    public void SelectPreviousItemDataButton() => _itemManager.SelectPreviousWeaponData();
+    public void SelectNextItemDataButton() => _itemManager.SelectNextWeaponData();
+    public void CreateRandomItemButton() => _itemManager.CreateRandomWeapon();
+    public void CreateItemButton() => _itemManager.CreateWeapon();
 
-    private void ItemCreatorUIOnItemDataSelected(ItemData selectedItemData)
+    private void ItemCreatorUIOnItemDataSelected(WeaponData selectedItemData)
     {
-        _selectedItemDataName.text = selectedItemData.ItemName;
+        _selectedItemDataName.text = selectedItemData.WeaponName;
     }
 }

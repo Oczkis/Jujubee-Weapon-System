@@ -7,6 +7,7 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
         GameManager.Instance.TryGetManager(out _inventoryManager);
+
         _inventoryManager.OnSlotDeselected += InventoryUIOnSlotDeselected;
         _inventoryManager.OnSlotSelected += InventoryUIOnSlotSelected;
         _inventoryManager.OnSlotCreated += InventoryUIOnSlotCreated;
@@ -37,6 +38,6 @@ public class InventoryUI : MonoBehaviour
 
     private void InventoryUIOnSlotUpdated(Slot updatedSlot)
     {
-        updatedSlot.ItemIcon.sprite = updatedSlot.Item.ItemIcon;
+        updatedSlot.WeaponIcon.sprite = updatedSlot.Weapon.WeaponIcon;
     }
 }

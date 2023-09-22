@@ -13,14 +13,14 @@ public class InventoryManager : MonoBehaviour, IManager
 
     private List<Slot> _inventorySlots = new List<Slot>();
 
-    private Slot _currentSlotSelected;
-
     private InputManager _inputManager;
-    private ItemManager _itemManager;
+    private WeaponManager _itemManager;
+
+    private Slot _currentSlotSelected;
 
     private int _numberOfSlots = 7;
 
-    public Slot EmptySlot => _inventorySlots.Find(slot => slot.Item == null);
+    public Slot EmptySlot => _inventorySlots.Find(slot => slot.Weapon == null);
     public Slot LastSlot => _inventorySlots[^1];
 
     void Start() 
@@ -29,7 +29,7 @@ public class InventoryManager : MonoBehaviour, IManager
         GameManager.Instance.TryGetManager(out _inputManager);
 
         _inputManager.OnMousePressed += InventoryOnMousePressed;
-        _itemManager.OnItemCreated += InventoryOnItemCreated;
+        _itemManager.OnWeaponCreated += InventoryOnItemCreated;
 
         PopulateInventory();
         SelectSlot(0);
@@ -38,7 +38,7 @@ public class InventoryManager : MonoBehaviour, IManager
     void OnDestroy()
     {
         _inputManager.OnMousePressed -= InventoryOnMousePressed;
-        _itemManager.OnItemCreated -= InventoryOnItemCreated;
+        _itemManager.OnWeaponCreated -= InventoryOnItemCreated;
     }
 
     private void InventoryOnMousePressed(bool leftMouseButton)
@@ -48,13 +48,13 @@ public class InventoryManager : MonoBehaviour, IManager
         SelectNextSlot();
     }
 
-    private void InventoryOnItemCreated(Item item)
+    private void InventoryOnItemCreated(Weapon item)
     {
         Slot slot = EmptySlot == null ? LastSlot : EmptySlot;
-        slot.PlaceItem(item);
+        slot.PlaceWeapon(item);
         OnSlotUpdated?.Invoke(slot);
 
-        if (slot == _currentSlotSelected && slot.Item != null)
+        if (slot == _currentSlotSelected && slot.Weapon != null)
             SelectSlot(_currentSlotSelected.SlotIndex);
     }
 
@@ -77,7 +77,7 @@ public class InventoryManager : MonoBehaviour, IManager
         {
             int seekIndex = (startIndex + i) % (_inventorySlots.Count);
 
-            if (_inventorySlots[seekIndex].Item == null)
+            if (_inventorySlots[seekIndex].Weapon == null)
                 continue;
 
             SelectSlot(seekIndex);

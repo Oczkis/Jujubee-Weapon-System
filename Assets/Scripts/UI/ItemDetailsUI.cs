@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class ItemDetailsUI : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _itemNameText, _weaponTypeText, _ammoSizeText, _weaponDamageText, _weaponStrengthText, _weaponAgilityText;
+    [SerializeField] private TMP_Text _itemNameText, _weaponTypeText, _descriptionText;
 
     private InventoryManager _inventoryManager;
 
     void Start()
     {
         GameManager.Instance.TryGetManager(out _inventoryManager);
+
         _inventoryManager.OnSlotSelected += ItemDetailsUIOnSlotSelected;
     }
 
@@ -20,28 +21,17 @@ public class ItemDetailsUI : MonoBehaviour
 
     private void ItemDetailsUIOnSlotSelected(Slot slot)
     {
-        Item item = slot.Item;
+        Weapon item = slot.Weapon;
 
         if (item == null) return;
 
-        SetStatsVisibility(item);
         SetTexts(item);
     }
 
-    private void SetStatsVisibility(Item item)
+    private void SetTexts(Weapon weapon)
     {
-        _ammoSizeText.gameObject.SetActive(item.AmmoSize > 0);
-        _weaponStrengthText.gameObject.SetActive(item.Strength > 0);
-        _weaponAgilityText.gameObject.SetActive(item.Agility > 0);
-    }
-
-    private void SetTexts(Item item)
-    {
-        _itemNameText.text = item.ItemName;
-        _weaponTypeText.text = item.WeaponType.ToString();
-        _ammoSizeText.text = "Ammo " + item.AmmoSize.ToString();
-        _weaponDamageText.text = "Weapon Damage : " + item.ItemDamage.ToString();
-        _weaponStrengthText.text = "Strength : " + item.Strength.ToString();
-        _weaponAgilityText.text = "Agility : " + item.Agility.ToString();
+        _weaponTypeText.text = weapon.WeaponType.ToString();
+        _descriptionText.text = weapon.GetDescription();
+        _itemNameText.text = weapon.WeaponName;
     }
 }

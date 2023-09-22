@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50f3baf5b9bb17d40848f27e1c153f92, type: 3}
-  m_Name: Sword
+  m_Name: Knife
   m_EditorClassIdentifier: 
-  WeaponIcon: {fileID: 21300000, guid: 359b18251aa09b746ba1f051f47759d2, type: 3}
-  WeaponName: Sword
-  WeaponModel: {fileID: 4686849319519084627, guid: 1fc42edac005419439f27f3b07d6179d,
+  WeaponIcon: {fileID: 21300000, guid: 770eb947627b0e74c9567958d4754d56, type: 3}
+  WeaponName: Knife
+  WeaponModel: {fileID: 4898376589914736847, guid: ae07c024e62e49645b3ea6b51d449b70,
     type: 3}
-  WeaponDamage: 9
-  AttackSpeed: 2.5
+  WeaponDamage: 3
+  AttackSpeed: 1.2

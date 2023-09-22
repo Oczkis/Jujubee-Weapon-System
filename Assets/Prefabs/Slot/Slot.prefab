@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slotFrame: {fileID: 1139063134333237484}
-  _itemIcon: {fileID: 5285068660655446035}
+  _weaponIcon: {fileID: 5285068660655446035}
 --- !u!222 &7434253345884641178
 CanvasRenderer:
   m_ObjectHideFlags: 0

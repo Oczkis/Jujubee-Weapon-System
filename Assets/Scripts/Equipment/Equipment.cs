@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Equipment : MonoBehaviour
 {
-    [SerializeField] private MeshFilter _meshFilter;
+    [SerializeField] private MeshFilter _weaponSpotMeshFilter;
 
     private InventoryManager _inventoryManager;
     private InputManager _inputManager;
 
-    private Item _itemEquipped;
+    private Weapon _itemEquipped;
 
     void Start()
     {
@@ -26,10 +26,10 @@ public class Equipment : MonoBehaviour
 
     private void EquipmentOnSlotSelected(Slot slot)
     {
-        Item item = slot.Item;
+        Weapon item = slot.Weapon;
         if (item == null) return;
 
-        _meshFilter.mesh = item.WeaponModel;
+        _weaponSpotMeshFilter.sharedMesh = item.WeaponModel;
         _itemEquipped = item;
     }
 
@@ -38,6 +38,6 @@ public class Equipment : MonoBehaviour
         if (!left) return;
         if (_itemEquipped == null) return;
 
-        _itemEquipped.CustomItemLogic.UseItem();
+        _itemEquipped.UseItem();
     }
 }

@@ -34,6 +34,7 @@ public class InventoryUI : MonoBehaviour
     private void InventoryUIOnSlotCreated(Slot newSlot)
     {
         newSlot.transform.SetParent(transform);
+        newSlot.GetComponent<RectTransform>().localScale = Vector3.one;
     }
 
     private void InventoryUIOnSlotUpdated(Slot updatedSlot)

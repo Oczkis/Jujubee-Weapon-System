@@ -28,9 +28,12 @@ public class Weapon
     public string GetDescription()
     {
         return WeaponData.GetDescription()
-        + "Strength : " + Strength.ToString() + "\n"
-        + "Agility : " + Agility.ToString() + "\n";
+        + GetStrengthDescription()
+        + GetAgilityDescription();
     }
+
+    private string GetStrengthDescription() => Strength > 0 ? "Strength : " + Strength.ToString() + "\n" : "";
+    private string GetAgilityDescription() => Agility > 0 ? "Agility : " + Agility.ToString() + "\n" : "";
 
     private void RandomizeStats()
     {
